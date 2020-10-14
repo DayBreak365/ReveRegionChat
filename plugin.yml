@@ -1,0 +1,7 @@
+name: ReveRegionChat
+main: revepattern.regionchat.Main.Main
+author: RevePattern
+version: 1.0.0
+commands:
+    지역채팅:
+        description: 지역채팅 명령어
