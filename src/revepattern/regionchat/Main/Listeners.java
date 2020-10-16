@@ -1,5 +1,6 @@
 package revepattern.regionchat.Main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,10 +16,10 @@ public class Listeners implements Listener {
 		if (DataManager.regionchat.contains(player)) {
 			e.setCancelled(true);
 			int distance = DataManager.getDistance();
-			for (Player rgall : DataManager.regionchat) {
-				int a = (int) player.getLocation().distance(rgall.getLocation());
+			for (Player rgplayer : Bukkit.getOnlinePlayers()) {
+				int a = (int) player.getLocation().distance(rgplayer.getLocation());
 				if (a <= distance) {
-					rgall.sendMessage("¡×b[ ¡×fÁö¿ªÃ¤ÆÃ¡×b ] " + player.getDisplayName() + " ¡×7: ¡×a" + e.getMessage());
+					rgplayer.sendMessage("Â§b[ Â§fì§€ì—­ì±„íŒ…Â§b ] " + player.getDisplayName() + " Â§7: Â§a" + e.getMessage());
 				}
 			}
 		}
