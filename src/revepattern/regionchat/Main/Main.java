@@ -18,15 +18,24 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		cf = getConfig();
 		
-		getCommand("Áö¿ªÃ¤ÆÃ").setExecutor(new Commands());
-		
-		Bukkit.getPluginManager().registerEvents(new Listeners(), this);
-		Bukkit.getConsoleSender().sendMessage("¡×b·¹ºê Áö¿ªÃ¤ÆÃ ÇÃ·¯±×ÀÎÀÌ ·ÎµùµÇ¾ú½À´Ï´Ù! - Á¦ÀÛÀÚ : RevePattern(·¹ºêÆĞÅÏ)");
+		setCommandExecutors();
+		registerListeners();
+		Bukkit.getConsoleSender().sendMessage("Â§bë ˆë¸Œ ì§€ì—­ì±„íŒ… í”ŒëŸ¬ê·¸ì¸ì´ ë¡œë”©ë˜ì—ˆìŠµë‹ˆë‹¤! - ì œì‘ì : RevePattern(ë ˆë¸ŒíŒ¨í„´)");
 	}
 	
 	public void onDisable() {
 		
-		Bukkit.getConsoleSender().sendMessage("¡×b·¹ºê Áö¿ªÃ¤ÆÃ ÇÃ·¯±×ÀÎÀÌ Á¾·áµÇ¾ú½À´Ï´Ù! - Á¦ÀÛÀÚ : RevePattern(·¹ºêÆĞÅÏ)");
+		Bukkit.getConsoleSender().sendMessage("Â§bë ˆë¸Œ ì§€ì—­ì±„íŒ… í”ŒëŸ¬ê·¸ì¸ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤! - ì œì‘ì : RevePattern(ë ˆë¸ŒíŒ¨í„´)");
+	}
+	
+	private void setCommandExecutors() {
+		String[] cmd = { "ì§€ì—­ì±„íŒ…", "ì§€ì—­ì±„íŒ…ê´€ë¦¬" };// ë°©ê¸ˆ ê·¸ê±¸ ë°˜ë³µë¬¸ìœ¼ë¡œ íˆìµ ë°”ë¡œ , í•´ì„œí•˜ëŠ”ê±° ì•„...!!
+		for (String s : cmd)
+			getCommand(s).setExecutor(new Commands());
+	}
+
+	private void registerListeners() {
+		Bukkit.getPluginManager().registerEvents(new Listeners(), this);
 	}
 
 }
