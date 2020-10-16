@@ -29,7 +29,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	private void setCommandExecutors() {
-		String[] cmd = { "지역채팅", "지역채팅관리" };// 방금 그걸 반복문으로 히익 바로 , 해서하는거 아...!!
+		String[] cmd = { "지역채팅", "지역채팅관리" };
 		for (String s : cmd)
 			getCommand(s).setExecutor(new Commands());
 	}
