@@ -5,3 +5,5 @@ version: 1.0.0
 commands:
     지역채팅:
         description: 지역채팅 명령어
+    지역채팅관리:
+        description: 지역채팅관리 명령어
