@@ -13,78 +13,68 @@ public class Commands implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		boolean isConsole = sender instanceof ConsoleCommandSender;
-
-		if (label.equals("Áö¿ªÃ¤ÆÃ")) {
-
+		
+		if (label.equals("ì§€ì—­ì±„íŒ…")) {
+			
+			if (isConsole) {
+				sendMessage(sender, "Â§cì½˜ì†”ë¡œëŠ” ëª…ë ¹ì–´ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤!");
+				return false;
+			}
 			Player player = (Player) sender;
-
+			if (DataManager.regionchat.contains(player)) {
+				DataManager.regionchat.remove(player);
+				sendMessage(sender, "Â§fì§€ì—­ì±„íŒ…ì„ ë¹„í™œì„±í™” í–ˆìŠµë‹ˆë‹¤.");
+				return false;
+			}
+			DataManager.regionchat.add(player);
+			sendMessage(sender, "Â§fì§€ì—­ì±„íŒ…ì„ í™œì„±í™” í–ˆìŠµë‹ˆë‹¤.");
+			return false;
+		}
+		if (label.equals("ì§€ì—­ì±„íŒ…ê´€ë¦¬")) {
+			if (isConsole) {
+				sendMessage(sender, "Â§cì½˜ì†”ë¡œëŠ” ëª…ë ¹ì–´ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+				return false;
+			}
+			Player player = (Player) sender;
+			
+			if (!player.isOp()) {
+				sendMessage(sender, "Â§cê´€ë¦¬ëª…ë ¹ì–´ ì‚¬ìš©ë¶ˆê°€ëŠ¥!");
+			}
+			
 			if (args.length == 0) {
-				if (!isConsole) {
-					sender.sendMessage(DataManager.getPrefix() + "¡×b/Áö¿ªÃ¤ÆÃ µµ¿ò¸» ¡×fÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä!");
-					return false;
-				}
-				sender.sendMessage(DataManager.getPrefix() + "¡×cÇØ´ç ¸í·É¾î´Â ÄÜ¼Ö¿¡¼­ »ç¿ëºÒ°¡´É ÇÕ´Ï´Ù.");
+				sendMessage(sender, "Â§b--- --- --- --- Â§fì§€ì—­ì±„íŒ…ê´€ë¦¬ ëª…ë ¹ì–´ ë„ì›€ë§ Â§b--- --- --- --- ");
+				sendMessage(sender, "Â§f/ì§€ì—­ì±„íŒ… ì ‘ë‘ì‚¬ì„¤ì • [ì ‘ë‘ì‚¬] Â§a: ì§€ì—­ì±„íŒ… ì‹œìŠ¤í…œì˜ ì ‘ë‘ì‚¬ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.");
+				sendMessage(sender, "Â§f/ì§€ì—­ì±„íŒ… ë²”ìœ„ì„¤ì • [ê±°ë¦¬] Â§a: ì§€ì—­ì±„íŒ… ë²”ìœ„ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.");
+				sendMessage(sender, "Â§b--- --- --- --- Â§fì§€ì—­ì±„íŒ…ê´€ë¦¬ ëª…ë ¹ì–´ ë„ì›€ë§ Â§b--- --- --- --- ");
 				return false;
 			}
-			if (args[0].equals("µµ¿ò¸»") || args[0].equalsIgnoreCase("ehdnaakf") || args[0].equalsIgnoreCase("help")) {
-				sender.sendMessage("");
-				sender.sendMessage("¡×b--- --- --- --- [ ¡×fÁö¿ªÃ¤ÆÃ ¡×b] --- --- --- ---");
-				sender.sendMessage("");
-				sender.sendMessage("¡×f/Áö¿ªÃ¤ÆÃ [¿Â|È°¼ºÈ­|on] ¡×a: Áö¿ªÃ¤ÆÃÀ» È°¼ºÈ­ ÇÕ´Ï´Ù.");
-				sender.sendMessage("¡×f/Áö¿ªÃ¤ÆÃ [¿ÀÇÁ|ºñÈ°¼ºÈ­|off] ¡×a: Áö¿ªÃ¤ÆÃÀ» ºñÈ°¼ºÈ­ ÇÕ´Ï´Ù.");
-				if (sender.isOp()) {
-					sender.sendMessage("");
-					sender.sendMessage("¡×f/Áö¿ªÃ¤ÆÃ Á¢µÎ»ç¼³Á¤ [Á¢µÎ»ç] ¡×a: Áö¿ªÃ¤ÆÃ ½Ã½ºÅÛÀÇ Á¢µÎ»ç¸¦ ¼³Á¤ÇÕ´Ï´Ù.");
-					sender.sendMessage("¡×f/Áö¿ªÃ¤ÆÃ ¹üÀ§¼³Á¤ [°Å¸®] ¡×a: Áö¿ªÃ¤ÆÃ ¹üÀ§¸¦ ¼³Á¤ÇÕ´Ï´Ù.");
+			if (args[0].equals("ì ‘ë‘ì‚¬ì„¤ì •")) {
+				if (args.length < 2) {
+					sendMessage(sender, "Â§f/ì§€ì—­ì±„íŒ… ì ‘ë‘ì‚¬ì„¤ì • [ì ‘ë‘ì‚¬] Â§a: ì§€ì—­ì±„íŒ… ì‹œìŠ¤í…œì˜ ì ‘ë‘ì‚¬ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.");
 					return false;
 				}
-				sender.sendMessage("");
-				sender.sendMessage("¡×b--- --- --- --- [ ¡×fÁö¿ªÃ¤ÆÃ ¡×b] --- --- --- ---");
+				DataManager.setPrefix(String.join(" ", args).substring(6));
+				sendMessage(sender, "Â§fì‹œìŠ¤í…œ ì ‘ë‘ì‚¬ë¥¼" + DataManager.getPrefix() + "Â§f ë¡œ ì„¤ì •í•˜ì˜€ìŠµë‹ˆë‹¤!");
 				return false;
 			}
-			if (args[0].equals("¿Â") || args[0].equals("È°¼ºÈ­") || args[0].equalsIgnoreCase("on")) {
-				if (!DataManager.regionchat.contains(player)) {
-					DataManager.regionchat.add(player);
-					sender.sendMessage(DataManager.getPrefix() + "Áö¿ªÃ¤ÆÃÀÌ È°¼ºÈ­ µÇ¾ú½À´Ï´Ù!");
+			if (args[0].equals("ë²”ìœ„ì„¤ì •")) {
+				if (args.length < 2) {
+					sendMessage(sender, "Â§f/ì§€ì—­ì±„íŒ… ë²”ìœ„ì„¤ì • [ê±°ë¦¬] Â§a: ì§€ì—­ì±„íŒ… ë²”ìœ„ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.");
 					return false;
 				}
-			}
-			if (args[0].equals("¿ÀÇÁ") || args[0].equals("ºñÈ°¼ºÈ­") || args[0].equalsIgnoreCase("off")) {
-				if (DataManager.regionchat.contains(player)) {
-					DataManager.regionchat.remove(player);
-					sender.sendMessage(DataManager.getPrefix() + "Áö¿ªÃ¤ÆÃÀÌ ºñÈ°¼ºÈ­ µÇ¾ú½À´Ï´Ù!");
+				if (!args[1].matches("[0-9]+")) {
+					sendMessage(sender, "Â§cìˆ«ìë§Œ ì ì–´ì£¼ì„¸ìš”!");
 					return false;
 				}
-			}
-			if (sender.isOp()) {
-				if (args[0].equals("Á¢µÎ»ç¼³Á¤")) {
-					if (args.length < 2) {
-						sender.sendMessage("¡×f/Áö¿ªÃ¤ÆÃ Á¢µÎ»ç¼³Á¤ [Á¢µÎ»ç] ¡×a: Áö¿ªÃ¤ÆÃ ½Ã½ºÅÛÀÇ Á¢µÎ»ç¸¦ ¼³Á¤ÇÕ´Ï´Ù.");
-						return false;
-					}
-
-					DataManager.setPrefix(String.join(" ", args).substring(6));
-
-					sender.sendMessage("¡×fÀÔ·ÂÇÏ½Å Á¢µÎ»ç´ë·Î ½Ã½ºÅÛÁ¢µÎ»ç¸¦ ¼³Á¤ÇÏ¿´½À´Ï´Ù!");
-					return false;
-				}
-				if (args[0].equals("¹üÀ§¼³Á¤")) {
-					if (args.length < 2) {
-						sender.sendMessage("¡×f/Áö¿ªÃ¤ÆÃ ¹üÀ§¼³Á¤ [°Å¸®] ¡×a: Áö¿ªÃ¤ÆÃ ¹üÀ§¸¦ ¼³Á¤ÇÕ´Ï´Ù.");
-						return false;
-					}
-
-					if (!args[1].matches("[0-9]+")) {
-						sender.sendMessage("¡×c¼ıÀÚ¸¸ Àû¾îÁÖ¼¼¿ä.");
-						return false;
-					}
-
-					DataManager.setDistance(Integer.parseInt(args[1]));
-					sender.sendMessage("¡×6ÇØ´ç ¹üÀ§À¸·Î ¼³Á¤ÇÏ¿´½À´Ï´Ù.");
-					return false;
-				}
+				DataManager.setDistance(Integer.parseInt(args[1]));
+				sendMessage(sender, "Â§fí•´ë‹¹ ë²”ìœ„ë¡œ ì„¤ì •í•˜ì˜€ìŠµë‹ˆë‹¤. (Â§bë²”ìœ„:" + DataManager.getDistance() + "Â§f)");
+				return false;
 			}
 		}
 		return false;
+	}
+	
+	public static void sendMessage(CommandSender sender, String msg) {
+		sender.sendMessage( DataManager.getPrefix() + msg);
 	}
 }
