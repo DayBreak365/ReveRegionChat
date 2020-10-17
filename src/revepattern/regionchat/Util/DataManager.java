@@ -1,16 +1,17 @@
 package revepattern.regionchat.Util;
 
-import java.util.ArrayList;
 import org.bukkit.entity.Player;
 import revepattern.regionchat.Main.Main;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class DataManager {
 
-	public static ArrayList<Player> regionchat;
-	//public static Object regionchat;
+	public static Set<Player> regionChat;
 	
 	static {
-		regionchat = new ArrayList<Player>();
+		regionChat = new HashSet<>();
 	}
 
 	public static void setPrefix(String prefix) {

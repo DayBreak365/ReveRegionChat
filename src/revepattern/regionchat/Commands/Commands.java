@@ -21,12 +21,12 @@ public class Commands implements CommandExecutor {
 				return false;
 			}
 			Player player = (Player) sender;
-			if (DataManager.regionchat.contains(player)) {
-				DataManager.regionchat.remove(player);
+			if (DataManager.regionChat.contains(player)) {
+				DataManager.regionChat.remove(player);
 				sendMessage(sender, "§f지역채팅을 비활성화 했습니다.");
 				return false;
 			}
-			DataManager.regionchat.add(player);
+			DataManager.regionChat.add(player);
 			sendMessage(sender, "§f지역채팅을 활성화 했습니다.");
 			return false;
 		}

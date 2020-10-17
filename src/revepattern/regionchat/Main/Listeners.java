@@ -10,16 +10,18 @@ import revepattern.regionchat.Util.DataManager;
 
 public class Listeners implements Listener {
 
+	private static int square(int a) {
+		return a * a;
+	}
+
 	@EventHandler
 	public void chat(AsyncPlayerChatEvent e) {
-		Player player = e.getPlayer();
-		if (DataManager.regionchat.contains(player)) {
+		final Player player = e.getPlayer();
+		if (DataManager.regionChat.contains(player)) {
 			e.setCancelled(true);
-			int distance = DataManager.getDistance();
-			for (Player rgplayer : Bukkit.getOnlinePlayers()) {
-				int a = (int) player.getLocation().distance(rgplayer.getLocation());
-				if (a <= distance) {
-					rgplayer.sendMessage("§b[ §f지역채팅§b ] " + player.getDisplayName() + " §7: §a" + e.getMessage());
+			for (Player recipient : Bukkit.getOnlinePlayers()) {
+				if (player.getLocation().distanceSquared(recipient.getLocation()) <= square(DataManager.getDistance())) {
+					recipient.sendMessage("§b[ §f지역채팅§b ] " + player.getDisplayName() + " §7: §a" + e.getMessage());
 				}
 			}
 		}
